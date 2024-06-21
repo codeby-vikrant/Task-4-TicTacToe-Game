@@ -130,6 +130,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[0] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[0]} Wins!';
+        _updateScore(displayXO[0]);
       });
     }
     //2nd row
@@ -138,6 +139,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[3] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[3]} Wins!';
+        _updateScore(displayXO[3]);
       });
     }
     //3rd row
@@ -146,6 +148,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[6] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[6]} Wins!';
+        _updateScore(displayXO[6]);
       });
     }
     //1st column
@@ -154,6 +157,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[0] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[0]} Wins!';
+        _updateScore(displayXO[0]);
       });
     }
     //2nd column
@@ -162,6 +166,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[1] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[1]} Wins!';
+        _updateScore(displayXO[1]);
       });
     }
     //3rd column
@@ -170,6 +175,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[2] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[2]} Wins!';
+        _updateScore(displayXO[2]);
       });
     }
     //diagonal
@@ -191,10 +197,11 @@ class _GameScreenState extends State<GameScreen> {
       });
     }
   }
-  void _updateScore(String winner){
-    if(winner == '0'){
+
+  void _updateScore(String winner) {
+    if (winner == '0') {
       oScore++;
-    } else if(winner == 'X'){
+    } else if (winner == 'X') {
       xScore++;
     }
   }
