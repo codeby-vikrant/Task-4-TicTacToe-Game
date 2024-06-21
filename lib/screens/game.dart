@@ -16,13 +16,22 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MainColor.primaryColor,
-      body: Center(
-        child: Text(
-          "Tic-Tac-Toe Game",
-          style: customFontWhite,
-        ),
-      ),
-    );
+        backgroundColor: MainColor.primaryColor,
+        body: const Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Text("Score Board"),
+            ),
+            Expanded(
+              flex: 3,
+              child: Text("Box Board"),
+            ),
+            Expanded(
+              flex: 2,
+              child: Text("Timer"),
+            )
+          ],
+        ));
   }
 }
