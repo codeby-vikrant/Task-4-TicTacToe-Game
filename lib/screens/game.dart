@@ -17,17 +17,33 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: MainColor.primaryColor,
-        body: const Column(
+        body: Column(
           children: [
-            Expanded(
+            const Expanded(
               flex: 1,
               child: Text("Score Board"),
             ),
             Expanded(
-              flex: 3,
-              child: Text("Box Board"),
-            ),
-            Expanded(
+                flex: 3,
+                child: GridView.builder(
+                    itemCount: 9,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3),
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                                width: 5, color: MainColor.primaryColor),
+                            color: MainColor.secondaryColor,
+                          ),
+                        ),
+                      );
+                    })),
+            const Expanded(
               flex: 2,
               child: Text("Timer"),
             )
