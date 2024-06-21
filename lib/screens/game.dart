@@ -62,7 +62,7 @@ class _GameScreenState extends State<GameScreen> {
                       })),
               Expanded(
                 flex: 2,
-                child: Text(resultDeclaration),
+                child: Text(resultDeclaration, style: customFontWhite,),
               )
             ],
           ),
