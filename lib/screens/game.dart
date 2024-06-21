@@ -10,6 +10,8 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  bool oTurn = true;
+  List<String> displayXO = ['', '', '', '', '', '', '', '', ''];
   static var customFontWhite = GoogleFonts.coiny(
       textStyle:
           const TextStyle(color: tWhiteColor, letterSpacing: 3, fontSize: 28));
@@ -34,13 +36,24 @@ class _GameScreenState extends State<GameScreen> {
                               crossAxisCount: 3),
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            _tapped(index);
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
                                   width: 5, color: MainColor.primaryColor),
                               color: MainColor.secondaryColor,
+                            ),
+                            child: Center(
+                              child: Text(
+                                displayXO[index],
+                                style: GoogleFonts.coiny(
+                                    textStyle: TextStyle(
+                                        fontSize: 64.0,
+                                        color: MainColor.primaryColor)),
+                              ),
                             ),
                           ),
                         );
@@ -52,5 +65,16 @@ class _GameScreenState extends State<GameScreen> {
             ],
           ),
         ));
+  }
+
+  void _tapped(int index) {
+    setState(() {
+      if (oTurn && displayXO[index] == '') {
+        displayXO[index] = 'O';
+      } else {
+        displayXO[index] = "X";
+      }
+      oTurn = !oTurn;
+    });
   }
 }
