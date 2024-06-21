@@ -13,6 +13,9 @@ class _GameScreenState extends State<GameScreen> {
   bool oTurn = true;
   List<String> displayXO = ['', '', '', '', '', '', '', '', ''];
   String resultDeclaration = '';
+  int oScore = 0;
+  int xScore = 0;
+  int filledBoxes = 0;
 
   static var customFontWhite = GoogleFonts.coiny(
       textStyle:
@@ -25,9 +28,45 @@ class _GameScreenState extends State<GameScreen> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              const Expanded(
+              Expanded(
                 flex: 1,
-                child: Center(child: Text("Score Board")),
+                child: Center(
+                    child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Player O",
+                            style: customFontWhite,
+                          ),
+                          Text(
+                            oScore.toString(),
+                            style: customFontWhite,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 20.0,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Player X",
+                            style: customFontWhite,
+                          ),
+                          Text(
+                            xScore.toString(),
+                            style: customFontWhite,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
               ),
               Expanded(
                   flex: 3,
@@ -62,7 +101,10 @@ class _GameScreenState extends State<GameScreen> {
                       })),
               Expanded(
                 flex: 2,
-                child: Text(resultDeclaration, style: customFontWhite,),
+                child: Text(
+                  resultDeclaration,
+                  style: customFontWhite,
+                ),
               )
             ],
           ),
