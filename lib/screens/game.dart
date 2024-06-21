@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_4_tick_tac_toe_game/constants/colors.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -11,7 +12,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   static var customFontWhite = GoogleFonts.coiny(
       textStyle:
-          const TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 28));
+          const TextStyle(color: tWhiteColor, letterSpacing: 3, fontSize: 28));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
