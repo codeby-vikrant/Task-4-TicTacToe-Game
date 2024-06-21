@@ -19,7 +19,7 @@ class _GameScreenState extends State<GameScreen> {
       backgroundColor: MainColor.primaryColor,
       body: Center(
         child: Text(
-          "Flutter Tic-Tac-Toe Game",
+          "Tic-Tac-Toe Game",
           style: customFontWhite,
         ),
       ),
