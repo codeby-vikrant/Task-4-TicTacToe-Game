@@ -16,7 +16,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: MainColor.primaryColor,
       body: Center(
         child: Text(
           "Flutter Tic-Tac-Toe Game",
