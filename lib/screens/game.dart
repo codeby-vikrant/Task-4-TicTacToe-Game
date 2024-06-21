@@ -178,6 +178,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[0] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[0]} Wins!';
+        _updateScore(displayXO[0]);
       });
     }
     //diagonal2
@@ -186,7 +187,15 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[6] != '') {
       setState(() {
         resultDeclaration = 'Player ${displayXO[6]} Wins!';
+        _updateScore(displayXO[6]);
       });
+    }
+  }
+  void _updateScore(String winner){
+    if(winner == '0'){
+      oScore++;
+    } else if(winner == 'X'){
+      xScore++;
     }
   }
 }
