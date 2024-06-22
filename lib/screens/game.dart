@@ -113,7 +113,9 @@ class _GameScreenState extends State<GameScreen> {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
                                   width: 5, color: MainColor.primaryColor),
-                              color: MainColor.secondaryColor,
+                              color: matchedIndexes.contains(index)
+                                  ? MainColor.accentColor
+                                  : MainColor.secondaryColor,
                             ),
                             child: Center(
                               child: Text(
