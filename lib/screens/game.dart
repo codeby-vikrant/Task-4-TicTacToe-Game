@@ -32,14 +32,19 @@ class _GameScreenState extends State<GameScreen> {
       setState(() {
         if (seconds > 0) {
           seconds--;
+        } else {
+          stopTimer();
         }
       });
     });
   }
 
   void stopTimer() {
+    resetTimer();
     timer?.cancel();
   }
+
+  void resetTimer() => seconds = maxSeconds;
 
   @override
   Widget build(BuildContext context) {
