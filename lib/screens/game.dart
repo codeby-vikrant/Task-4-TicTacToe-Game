@@ -138,18 +138,7 @@ class _GameScreenState extends State<GameScreen> {
                       const SizedBox(
                         height: 10.0,
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            _clearBoard();
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: tWhiteColor,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 32, vertical: 16)),
-                          child: const Text(
-                            "Play Again",
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                          ))
+                      _buildTimer()
                     ],
                   ),
                 ),
@@ -270,5 +259,38 @@ class _GameScreenState extends State<GameScreen> {
       resultDeclaration = '';
     });
     filledBoxes = 0;
+  }
+
+  Widget _buildTimer() {
+    final isRunning = timer == null ? false : timer!.isActive;
+    return isRunning
+        ? SizedBox(
+            width: 100,
+            height: 100,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                CircularProgressIndicator(
+                  value: 1 - seconds / maxSeconds,
+                  valueColor: const AlwaysStoppedAnimation(tWhiteColor),
+                  strokeWidth: 8,
+                  backgroundColor: MainColor.accentColor,
+                )
+              ],
+            ),
+          )
+        : ElevatedButton(
+            onPressed: () {
+              startTimer();
+              _clearBoard();
+            },
+            style: ElevatedButton.styleFrom(
+                backgroundColor: tWhiteColor,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
+            child: const Text(
+              "Play Again",
+              style: TextStyle(fontSize: 20, color: Colors.black),
+            ));
   }
 }
