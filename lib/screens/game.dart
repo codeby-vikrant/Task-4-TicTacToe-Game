@@ -30,7 +30,7 @@ class _GameScreenState extends State<GameScreen> {
           const TextStyle(color: tWhiteColor, letterSpacing: 3, fontSize: 28));
 
   void startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
       setState(() {
         if (seconds > 0) {
           seconds--;
@@ -123,7 +123,9 @@ class _GameScreenState extends State<GameScreen> {
                                 style: GoogleFonts.coiny(
                                     textStyle: TextStyle(
                                         fontSize: 64.0,
-                                        color: MainColor.primaryColor)),
+                                        color: matchedIndexes.contains(index)
+                                            ? MainColor.secondaryColor
+                                            : MainColor.primaryColor)),
                               ),
                             ),
                           ),
@@ -266,7 +268,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _updateScore(String winner) {
-    if (winner == '0') {
+    if (winner == 'O') {
       oScore++;
     } else if (winner == 'X') {
       xScore++;
@@ -280,6 +282,7 @@ class _GameScreenState extends State<GameScreen> {
         displayXO[i] = '';
       }
       resultDeclaration = '';
+      matchedIndexes = [];
     });
     filledBoxes = 0;
   }
