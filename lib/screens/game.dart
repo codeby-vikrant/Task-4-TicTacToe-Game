@@ -242,6 +242,8 @@ class _GameScreenState extends State<GameScreen> {
       for (int i = 0; i < 9; i++) {
         displayXO[i] = '';
       }
+      resultDeclaration = '';
     });
+    filledBoxes = 0;
   }
 }
