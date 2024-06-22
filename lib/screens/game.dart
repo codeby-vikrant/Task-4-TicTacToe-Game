@@ -114,12 +114,17 @@ class _GameScreenState extends State<GameScreen> {
                         height: 10.0,
                       ),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _clearBoard();
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: tWhiteColor,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 32, vertical: 16)),
-                          child: const Text("Play Again"))
+                          child: const Text(
+                            "Play Again",
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ))
                     ],
                   ),
                 ),
@@ -230,5 +235,13 @@ class _GameScreenState extends State<GameScreen> {
       xScore++;
     }
     winnerFound = true;
+  }
+
+  void _clearBoard() {
+    setState(() {
+      for (int i = 0; i < 9; i++) {
+        displayXO[i] = '';
+      }
+    });
   }
 }
