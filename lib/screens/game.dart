@@ -14,6 +14,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   bool oTurn = true;
   List<String> displayXO = ['', '', '', '', '', '', '', '', ''];
+  int attempts = 0;
   String resultDeclaration = '';
   bool winnerFound = false;
   int oScore = 0;
@@ -149,17 +150,20 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _tapped(int index) {
-    setState(() {
-      if (oTurn && displayXO[index] == '') {
-        displayXO[index] = 'O';
-        filledBoxes++;
-      } else if (!oTurn && displayXO[index] == '') {
-        displayXO[index] = "X";
-        filledBoxes++;
-      }
-      oTurn = !oTurn;
-      _checkWinner();
-    });
+    final isRunning = timer == null ? false : timer!.isActive;
+    if (isRunning) {
+      setState(() {
+        if (oTurn && displayXO[index] == '') {
+          displayXO[index] = 'O';
+          filledBoxes++;
+        } else if (!oTurn && displayXO[index] == '') {
+          displayXO[index] = "X";
+          filledBoxes++;
+        }
+        oTurn = !oTurn;
+        _checkWinner();
+      });
+    }
   }
 
   void _checkWinner() {
@@ -275,6 +279,15 @@ class _GameScreenState extends State<GameScreen> {
                   valueColor: const AlwaysStoppedAnimation(tWhiteColor),
                   strokeWidth: 8,
                   backgroundColor: MainColor.accentColor,
+                ),
+                Center(
+                  child: Text(
+                    "$seconds",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: tWhiteColor,
+                        fontSize: 50),
+                  ),
                 )
               ],
             ),
@@ -283,14 +296,15 @@ class _GameScreenState extends State<GameScreen> {
             onPressed: () {
               startTimer();
               _clearBoard();
+              attempts++;
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: tWhiteColor,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            child: const Text(
-              "Play Again",
-              style: TextStyle(fontSize: 20, color: Colors.black),
+            child: Text(
+              attempts == 0 ? "Start" : "Play Again",
+              style: const TextStyle(fontSize: 20, color: Colors.black),
             ));
   }
 }
