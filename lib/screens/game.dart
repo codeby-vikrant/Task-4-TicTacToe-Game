@@ -115,8 +115,10 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       if (oTurn && displayXO[index] == '') {
         displayXO[index] = 'O';
+        filledBoxes++;
       } else if (!oTurn && displayXO[index] == '') {
         displayXO[index] = "X";
+        filledBoxes++;
       }
       oTurn = !oTurn;
       _checkWinner();
