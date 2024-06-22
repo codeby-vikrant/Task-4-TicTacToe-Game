@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_4_tick_tac_toe_game/constants/colors.dart';
@@ -17,10 +19,28 @@ class _GameScreenState extends State<GameScreen> {
   int oScore = 0;
   int xScore = 0;
   int filledBoxes = 0;
+  static const maxSeconds = 30;
+  int seconds = maxSeconds;
+  Timer? timer;
 
   static var customFontWhite = GoogleFonts.coiny(
       textStyle:
           const TextStyle(color: tWhiteColor, letterSpacing: 3, fontSize: 28));
+
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (seconds > 0) {
+          seconds--;
+        }
+      });
+    });
+  }
+
+  void stopTimer() {
+    timer?.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
