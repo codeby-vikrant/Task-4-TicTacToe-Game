@@ -13,6 +13,7 @@ class _GameScreenState extends State<GameScreen> {
   bool oTurn = true;
   List<String> displayXO = ['', '', '', '', '', '', '', '', ''];
   String resultDeclaration = '';
+  bool winnerFound = false;
   int oScore = 0;
   int xScore = 0;
   int filledBoxes = 0;
@@ -101,9 +102,26 @@ class _GameScreenState extends State<GameScreen> {
                       })),
               Expanded(
                 flex: 2,
-                child: Text(
-                  resultDeclaration,
-                  style: customFontWhite,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        resultDeclaration,
+                        style: customFontWhite,
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: tWhiteColor,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 32, vertical: 16)),
+                          child: const Text("Play Again"))
+                    ],
+                  ),
                 ),
               )
             ],
@@ -198,6 +216,11 @@ class _GameScreenState extends State<GameScreen> {
         _updateScore(displayXO[6]);
       });
     }
+    if (!winnerFound && filledBoxes == 9) {
+      setState(() {
+        resultDeclaration = "Nobody Wins!";
+      });
+    }
   }
 
   void _updateScore(String winner) {
@@ -206,5 +229,6 @@ class _GameScreenState extends State<GameScreen> {
     } else if (winner == 'X') {
       xScore++;
     }
+    winnerFound = true;
   }
 }
